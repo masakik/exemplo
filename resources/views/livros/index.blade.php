@@ -5,7 +5,9 @@
 @endsection
 
 @section('content')
-  Não há livros cadastrados nesse sistema ainda!
-  <br>
-  segunda linha
+  @forelse ($livros as $livro)
+    @include('livros.partials.fields')
+  @empty
+    Não há livros cadastrados
+  @endforelse
 @endsection

@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Livro;
+
 class LivroController extends Controller
 {
     public function index()
     {
-        //bvvvjvj
-        return view('livros.index');
+        $livros = Livro::all();
+        return view('livros.index', [
+            'livros' => $livros,
+        ]);
     }
 
     public function show($isbn)
     {
-        if ($isbn == '9780195106817') {
-            $livro = "Quincas Borba - Machado de Assis";
-        } else {
-            $livro = "Livro não identificado";
-        }
+        $livro = Livro::where('isbn', $isbn)->first();
         return view('livros.show', [
             'livro' => $livro,
         ]);
